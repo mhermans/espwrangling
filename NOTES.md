@@ -26,4 +26,4 @@
 
 * [esptool](https://github.com/themadinventor/esptool/)
 * [nodeMCU](http://nodemcu.com/index_en.html)
-* [ESP8266 Arduino add-on](https://github.com/sandeepmistry/esp8266-Arduino
+* [ESP8266 Arduino add-on](https://github.com/sandeepmistry/esp8266-Arduino)
