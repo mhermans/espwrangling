@@ -16,6 +16,7 @@
 
 ## General notes
 
+* [ESP models reference](http://l0l.org.uk/2014/12/esp8266-modules-hardware-guide-gotta-catch-em-all/)
 * [walkthrough](http://www.labradoc.com/i/follower/p/notes-esp8266)
 * [reference](https://nurdspace.nl/ESP8266)
 * [reference](wiki.iteadstudio.com/ESP8266_Serial_WIFI_Module)
