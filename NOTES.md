@@ -31,4 +31,8 @@
 
 
 
+
 curl -O https://raw.githubusercontent.com/pycom/pycom-libraries/master/examples/mqtt/mqtt.py
+sudo ampy --port /dev/ttyUSB0 put mqtt.py
+
+curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/umqtt.simple/umqtt/simple.py
