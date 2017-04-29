@@ -12,11 +12,17 @@ def sub_cb(topic, msg):
     print((topic, msg))
     topic = topic.decode('UTF-8')
     msg = msg.decode('UTF-8')
-    
-    nlight = int(topic.split('/')[2])
+
     r, g, b = str(msg).split(',')
 
-    np[nlight] = (int(r), int(g), int(b))
+    if topic == 'mhermans/lights':
+        for n in range(16):
+            np[n] = (int(r), int(g), int(b))
+    
+    else:
+        nlight = int(topic.split('/')[2])
+        np[nlight] = (int(r), int(g), int(b))
+
     np.write()
 
 def main(server="test.mosquitto.org"):

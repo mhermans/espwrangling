@@ -30,10 +30,21 @@
 * [ESP8266 Arduino add-on](https://github.com/sandeepmistry/esp8266-Arduino)
 
 
+    curl -O http://micropython.org/resources/firmware/esp8266-20170108-v1.8.7.bin
+    dmesg | grep cp210x
+    esptool.py --port /dev/ttyUSB0 erase_flash
+    esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin 
+
+    screen /dev/ttyUSB0 115200
+
+    curl -O https://raw.githubusercontent.com/micropython/micropython-lib/2164c88483f47117ba1ce9128753599f819c658b/umqtt.simple/umqtt/simple.py
+
+    sudo ampy --port /dev/ttyUSB0 put simple /mqtt.py
+
+
 
 
 curl -O https://raw.githubusercontent.com/pycom/pycom-libraries/master/examples/mqtt/mqtt.py
-sudo ampy --port /dev/ttyUSB0 put mqtt.py
 
 curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/umqtt.simple/umqtt/simple.py
 
@@ -50,3 +61,5 @@ curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/ure
 
 
 https://requestb.in/
+
+https://lab.whitequark.org/notes/2016-10-20/controlling-a-gpio-through-an-esp8266-based-web-server/
