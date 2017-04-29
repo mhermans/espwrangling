@@ -1,5 +1,8 @@
 import time
+import machine, neopixel
 from mqtt import MQTTClient
+
+np = neopixel.NeoPixel(machine.Pin(15), 16)
 
 # Publish test messages e.g. with:
 # mosquitto_pub -t foo_topic -m hello
@@ -7,12 +10,17 @@ from mqtt import MQTTClient
 # Received messages from subscriptions will be delivered to this callback
 def sub_cb(topic, msg):
     print((topic, msg))
+    #nlight = int(str(topic).split('/')[2])
+    msg = msg.decode('UTF-8')
+    n, r, g, b = str(msg).split(',')
+    np[int(n)] = (int(r), int(g), int(b))
+    np.write()
 
 def main(server="test.mosquitto.org"):
     c = MQTTClient("umqtt_clientc", server)
     c.set_callback(sub_cb)
     c.connect()
-    c.subscribe(b"mhermans/lights/1")
+    c.subscribe(b"mhermans/lights")
     while True:
         if True:
             # Blocking wait for message
