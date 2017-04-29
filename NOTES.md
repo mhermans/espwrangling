@@ -28,3 +28,7 @@
 * [esptool](https://github.com/themadinventor/esptool/)
 * [nodeMCU](http://nodemcu.com/index_en.html)
 * [ESP8266 Arduino add-on](https://github.com/sandeepmistry/esp8266-Arduino)
+
+
+
+curl -O https://raw.githubusercontent.com/pycom/pycom-libraries/master/examples/mqtt/mqtt.py
