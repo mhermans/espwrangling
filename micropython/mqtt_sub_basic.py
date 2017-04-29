@@ -10,17 +10,20 @@ np = neopixel.NeoPixel(machine.Pin(15), 16)
 # Received messages from subscriptions will be delivered to this callback
 def sub_cb(topic, msg):
     print((topic, msg))
-    #nlight = int(str(topic).split('/')[2])
+    topic = topic.decode('UTF-8')
     msg = msg.decode('UTF-8')
-    n, r, g, b = str(msg).split(',')
-    np[int(n)] = (int(r), int(g), int(b))
+    
+    nlight = int(topic.split('/')[2])
+    r, g, b = str(msg).split(',')
+
+    np[nlight] = (int(r), int(g), int(b))
     np.write()
 
 def main(server="test.mosquitto.org"):
     c = MQTTClient("umqtt_clientc", server)
     c.set_callback(sub_cb)
     c.connect()
-    c.subscribe(b"mhermans/lights")
+    c.subscribe(b"mhermans/lights/#")
     while True:
         if True:
             # Blocking wait for message
