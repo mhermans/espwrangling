@@ -36,3 +36,17 @@ curl -O https://raw.githubusercontent.com/pycom/pycom-libraries/master/examples/
 sudo ampy --port /dev/ttyUSB0 put mqtt.py
 
 curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/umqtt.simple/umqtt/simple.py
+
+http://www.hivemq.com/demos/websocket-client/
+
+https://github.com/micropython/micropython-lib/tree/master/umqtt.simple
+
+
+mosquitto_pub -h test.mosquitto.org -t "mhermans/lights/1" -m "0,0,0"
+mosquitto_sub -h test.mosquitto.org -t "mhermans/lights/#" -v
+
+
+curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/urequests/urequests.py
+
+
+https://requestb.in/
