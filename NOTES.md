@@ -63,3 +63,21 @@ curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/ure
 https://requestb.in/
 
 https://lab.whitequark.org/notes/2016-10-20/controlling-a-gpio-through-an-esp8266-based-web-server/
+
+pip install -U scikit-learn
+
+sudo ampy --port /dev/ttyUSB0 put mqtt.py
+
+pip install -U scikit-learn
+pip install -U scipy
+sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran
+
+
+
+MQTT nonblocking example https://forum.micropython.org/viewtopic.php?f=16&t=3283
+
+https://docs.micropython.org/en/latest/esp8266/esp8266/quickref.html#timers
+from machine import Timer
+tim = Timer(-1)
+tim.init(period=500, mode=Timer.PERIODIC, callback=lambda t: p0.value(not p0.value()))
+tim.deactivate()
