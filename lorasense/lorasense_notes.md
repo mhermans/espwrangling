@@ -6,6 +6,8 @@ Required stuff:
 * DHT22 temperature/humidity sensor
 * 4K7 resistor
 
+![LoPy+DHT22 example](lorasense_screenshot_small.jpg]
+
 This [Micropython](https://micropython.org/) script ([`lorasense.py`][lorasense.py]) demonstrates connecting a [Pycom](https://pycom.io/) LoPy-board to the [KU Leuven LoRaWAN Dingnet-network](https://admin.kuleuven.be/icts/services/dingnet/en). It uses a [DHT22 temperature and humidity sensor](https://www.adafruit.com/product/385) to illustrate broadcasting sensor-readings over LoRaWAN, values that can be read back over [MQTT](http://mqtt.org/).
 
 On the hardware-side, connect the DHT22-sensor to the 3.3V & ground pin of the LoPy-board, and the data-pin to the G28-pin. Use an external 4K7 pull-up resistor on this data-pin. Connect the LoPy-board with USB, giving a virtual serial console on a serial device, e.g. `/dev/ttyUSB0`.

@@ -1,5 +1,60 @@
 # Notes
 
+## Micropython notes
+
+Get REPL-prompt over serial:
+
+    sudo dmesg | grep tty 
+    screen /dev/ttyUSB0 115200
+
+
+### Setup 
+
+How to check currently installed firmware version?
+
+ctrl-d in REPL => soft reboot
+
+    MicroPython 8785822 on 2016-10-06; LoPy with ESP32
+
+    import uos
+    uos.uname()
+
+    (sysname='ESP32', nodename='ESP32', release='0.9.0b', version='1f7bdfd on 2016-10-09', machine='WiPy with ESP32')
+    (sysname='WiPy', nodename='WiPy', release='1.9.2.b2', version='v1.8.6-796-g489fafa0 on 2017-10-15', machine='WiPy with ESP32')
+
+Check that board is in P32-ground, connect on terminal, press reset => 
+
+    POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+    waiting for download
+
+
+    workon micropython-test
+    pip install adafruit-ampy
+    pip install esptool
+
+
+Enable non-root access to /dev/ttyUSB0 (users in dailout group have R/W access to devices)
+
+    sudo usermod -a -G dialout mhermans
+
+
+
+Error flashing firmware
+
+    rst:0x1 (POWERON_RESET),boot:0x3 (DOWNLOAD_BOOT(UART0/UART1/SDIO_REI_REO_V2))
+    waiting for download
+
+
+
+wlan.connect('mushroomservice', auth = (wlan.WPA2, 'IKM@geertrui3'))
+
+generate lopy DevEUI based on MAC:
+
+    import binascii
+    from network import LoRa
+    lora = LoRa(mode=LoRa.LORAWAN)
+    binascii.hexlify(lora.mac())
+
 ## PCB-design inspiration
 
 * [design with voltage regulator & jumper](http://ciphersink.net/post/18)
@@ -81,3 +136,21 @@ from machine import Timer
 tim = Timer(-1)
 tim.init(period=500, mode=Timer.PERIODIC, callback=lambda t: p0.value(not p0.value()))
 tim.deactivate()
+
+# LoPy notes
+
+updated to 1.15.0.b1
+
+
+# u-nummer als login voor VPN
+apt-get install openconnect
+openconnect -v --juniper https://extranet.kuleuven.be/b
+ping icts-p-dingnet-account-1.lnx.icts.kuleuven.be
+mosquitto_sub -h 'icts-p-dingnet-account-1.lnx.icts.kuleuven.be' -p 1883 -t 'app_u0062125/#' -d -u u0062125 -P 10bfde7dfffceb74911d5c846de4237f
+
+
+>>> import socket
+>>> s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)
+>>> s.setblocking(False)
+>>> s.send('aa')
+
