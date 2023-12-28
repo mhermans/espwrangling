@@ -85,12 +85,6 @@ generate lopy DevEUI based on MAC:
 * [ESP8266 Arduino add-on](https://github.com/sandeepmistry/esp8266-Arduino)
 
 
-    curl -O http://micropython.org/resources/firmware/esp8266-20170108-v1.8.7.bin
-    dmesg | grep cp210x
-    esptool.py --port /dev/ttyUSB0 erase_flash
-    esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin 
-
-    screen /dev/ttyUSB0 115200
 
     curl -O https://raw.githubusercontent.com/micropython/micropython-lib/2164c88483f47117ba1ce9128753599f819c658b/umqtt.simple/umqtt/simple.py
 
@@ -99,9 +93,9 @@ generate lopy DevEUI based on MAC:
 
 
 
-curl -O https://raw.githubusercontent.com/pycom/pycom-libraries/master/examples/mqtt/mqtt.py
-
 curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/umqtt.simple/umqtt/simple.py
+curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/urequests/urequests.py
+
 
 http://www.hivemq.com/demos/websocket-client/
 
@@ -112,21 +106,13 @@ mosquitto_pub -h test.mosquitto.org -t "mhermans/lights/1" -m "0,0,0"
 mosquitto_sub -h test.mosquitto.org -t "mhermans/lights/#" -v
 
 
-curl -O https://raw.githubusercontent.com/micropython/micropython-lib/master/urequests/urequests.py
 
 
 https://requestb.in/
 
 https://lab.whitequark.org/notes/2016-10-20/controlling-a-gpio-through-an-esp8266-based-web-server/
 
-pip install -U scikit-learn
-
 sudo ampy --port /dev/ttyUSB0 put mqtt.py
-
-pip install -U scikit-learn
-pip install -U scipy
-sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran
-
 
 
 MQTT nonblocking example https://forum.micropython.org/viewtopic.php?f=16&t=3283
@@ -137,6 +123,31 @@ tim = Timer(-1)
 tim.init(period=500, mode=Timer.PERIODIC, callback=lambda t: p0.value(not p0.value()))
 tim.deactivate()
 
+<<<<<<< HEAD
+
+# Setup micropython tools
+
+Create a virtual environment and install tools
+
+    virtualenv3 ~/lib/virtualenvs/espenv
+    source ~/lib/virtualenvs/espenv/bin/activate
+
+    pip3 install adafruit-ampy
+    pip3 install esptool
+
+
+    curl -O http://micropython.org/resources/firmware/esp8266-20170108-v1.8.7.bin
+    dmesg | grep cp210x
+    esptool.py --port /dev/ttyUSB0 erase_flash
+    esptool.py --port /dev/ttyUSB0 --baud 460800 write_flash --flash_size=detect 0 esp8266-20170108-v1.8.7.bin 
+
+    screen /dev/ttyUSB0 115200
+
+# MQTT
+
+sudo apt-get install mosquitto-clients
+
+=======
 # LoPy notes
 
 updated to 1.15.0.b1
@@ -153,4 +164,5 @@ mosquitto_sub -h 'icts-p-dingnet-account-1.lnx.icts.kuleuven.be' -p 1883 -t 'app
 >>> s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)
 >>> s.setblocking(False)
 >>> s.send('aa')
+>>>>>>> 7752822782ae42550d35f67069f144afbcd186d8
 
